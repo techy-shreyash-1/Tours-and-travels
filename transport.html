@@ -1,0 +1,2416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Siya Travels — Car Rentals in Pune &amp; Goa | Transport Services</title>
+
+  <link rel="stylesheet" href="https://use.typekit.net/enn3ssx.css">
+
+  <style>
+    /* ============================================================
+       GLOBAL / THEME  (from Services.html)
+    ============================================================ */
+    :root {
+      --bg:                    #faf8f4;
+      --surface:               #ffffff;
+      --text:                  #1a1610;
+      --fg:                    #5c5448;
+      --accent:                #d4500a;
+      --muted:                 #a89e92;
+      --link:                  #d4500a;
+      --link-hover:            #a83d07;
+      --text-on-surface-strong:#f5ede3;
+      --link-on-strong:        #f5c49a;
+      --link-hover-on-strong:  #ffd8b8;
+      --primary:               #d4500a;
+      --border:                #e2d9ce;
+      --text-on-accent:        #ffffff;
+      --text-display-accent:   #d4500a;
+      --surface-strong:        #1a1610;
+      --hero-glow:             #d4500a;
+      --chart-1:               #d4500a;
+      --chart-2:               #f2a06a;
+
+      --text-xs:       0.75rem;
+      --text-sm:       0.8125rem;
+      --text-base:     1rem;
+      --text-lg:       1.125rem;
+      --text-xl:       1.25rem;
+      --text-2xl:      1.5rem;
+      --text-3xl:      1.875rem;
+      --text-4xl:      2.25rem;
+      --text-display:  3.5rem;
+      --duration-fast: 150ms;
+      --duration-base: 250ms;
+      --duration-slow: 400ms;
+      --duration-xslow:600ms;
+      --nav-height:    64px;
+      --font-display: abril, serif;
+      --font-body:    nunito-sans, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      line-height: 1.65;
+      letter-spacing: 0.01em;
+      word-spacing: 0.16em;
+    }
+
+    h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; }
+    h4, h5, h6  { font-family: var(--font-body); line-height: 1.3; }
+
+    p + p { margin-top: 2em; }
+
+    a { color: var(--link); text-decoration: underline; text-underline-offset: 0.15em; transition: color var(--duration-fast) ease; }
+    a:hover { color: var(--link-hover); }
+
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 4rem);
+    }
+
+    .eyebrow {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    button, .btn {
+      font-family: var(--font-body);
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      transition: transform var(--duration-fast) ease, background-color var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
+      min-width: 24px; min-height: 24px;
+    }
+    button:active, .btn:active { transform: scale(0.97); }
+
+    :focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ============================================================
+       NAV  (from Services.html)
+    ============================================================ */
+    nav[data-name="Primary nav"] {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      height: var(--nav-height);
+      background-color: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-desktop { display: flex; align-items: center; gap: 2.5rem; }
+    .nav-desktop a {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--fg);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color var(--duration-fast) ease;
+    }
+    .nav-desktop a:hover { color: var(--accent); }
+
+    .nav-cta {
+      background-color: var(--primary);
+      color: var(--text-on-accent);
+      padding: 0.5rem 1.25rem;
+      border-radius: 4px;
+      font-size: var(--text-sm);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    .nav-cta:hover { background-color: var(--link-hover); color: var(--text-on-accent); }
+
+    details.nav-mobile { display: none; }
+    .nav-toggle {
+      list-style: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      background: none;
+      border: none;
+      color: var(--text);
+    }
+    .nav-toggle::-webkit-details-marker { display: none; }
+
+    .nav-drawer {
+      display: none;
+      position: absolute;
+      top: var(--nav-height);
+      left: 0; right: 0;
+      background-color: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem clamp(1.25rem, 5vw, 4rem);
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    details.nav-mobile[open] .nav-drawer {
+      display: flex;
+    }
+    .nav-drawer a {
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--fg);
+      text-decoration: none;
+    }
+    .nav-drawer a:hover { color: var(--accent); }
+
+    @media (max-width: 767px) {
+      .nav-desktop { display: none; }
+      details.nav-mobile { display: block; }
+    }
+
+    /* ============================================================
+       HERO  (from Services.html)
+    ============================================================ */
+    .hero-section {
+      padding-top: calc(var(--nav-height) + 3rem);
+      padding-bottom: 0;
+      background-color: var(--bg);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      align-items: stretch;
+      min-height: 88vh;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-block: 4rem;
+      padding-right: 3rem;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-eyebrow-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      display: inline-block;
+    }
+
+    .hero-heading {
+      font-size: clamp(2.5rem, 5vw, var(--text-display));
+      color: var(--text);
+      margin-bottom: 1.25rem;
+      max-width: 16ch;
+    }
+
+    .hero-heading em {
+      color: var(--text-display-accent);
+      font-style: normal;
+    }
+
+    .hero-sub {
+      font-size: var(--text-lg);
+      color: var(--fg);
+      max-width: 42ch;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--text-on-accent);
+      padding: 0.875rem 2rem;
+      font-size: var(--text-base);
+      font-weight: 700;
+      border-radius: 4px;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-primary:hover { background-color: var(--link-hover); color: var(--text-on-accent); }
+
+    .btn-ghost {
+      background-color: transparent;
+      color: var(--text);
+      padding: 0.875rem 2rem;
+      font-size: var(--text-base);
+      font-weight: 600;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 2px solid var(--border);
+      display: inline-block;
+      transition: border-color var(--duration-fast) ease, color var(--duration-fast) ease;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-stat-num {
+      font-family: var(--font-display);
+      font-size: var(--text-3xl);
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+      display: block;
+    }
+    .hero-stat-label {
+      font-size: var(--text-sm);
+      color: var(--fg);
+      font-weight: 600;
+    }
+
+    .hero-image-col {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-image-col img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-image-badge {
+      position: absolute;
+      bottom: 2rem;
+      left: -1.5rem;
+      background-color: var(--surface);
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 8px 32px color-mix(in srgb, var(--text) 12%, transparent);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      animation: badge-float 4s ease-in-out infinite;
+    }
+
+    .hero-badge-icon {
+      width: 40px; height: 40px;
+      background-color: color-mix(in srgb, var(--accent) 12%, transparent);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .hero-badge-text strong {
+      display: block;
+      font-size: var(--text-sm);
+      font-weight: 700;
+      color: var(--text);
+    }
+    .hero-badge-text span {
+      font-size: var(--text-xs);
+      color: var(--fg);
+    }
+
+    @keyframes badge-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @keyframes hero-fade-up {
+      from { opacity: 0; transform: translateY(2rem); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-content { animation: hero-fade-up var(--duration-xslow) ease both; }
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      .hero-content { padding-right: 0; padding-bottom: 2.5rem; }
+      .hero-image-col { height: 55vw; min-height: 280px; }
+      .hero-image-badge { left: 1rem; bottom: 1rem; }
+    }
+
+    @media (max-width: 500px) {
+      .hero-stats { gap: 1.5rem; }
+      .hero-image-col { height: 65vw; }
+    }
+
+    /* ============================================================
+       SERVICES  (from Services.html)
+    ============================================================ */
+    .services-section {
+      padding-block: 6rem;
+      background-color: var(--surface);
+    }
+
+    .services-header {
+      max-width: 52ch;
+      margin-bottom: 3.5rem;
+    }
+
+    .services-header h2 {
+      font-size: clamp(var(--text-3xl), 4vw, var(--text-4xl));
+      color: var(--text);
+      margin-top: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .services-header p {
+      font-size: var(--text-lg);
+      color: var(--fg);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      transition: box-shadow var(--duration-base) ease, transform var(--duration-base) ease;
+    }
+    .service-card:hover {
+      box-shadow: 0 12px 36px color-mix(in srgb, var(--text) 8%, transparent);
+      transform: translateY(-4px);
+    }
+
+    .service-icon {
+      width: 48px; height: 48px;
+      background-color: color-mix(in srgb, var(--accent) 10%, transparent);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .service-card h3 {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .service-card p {
+      font-size: var(--text-base);
+      color: var(--fg);
+      line-height: 1.65;
+    }
+    .service-card p + p { margin-top: 0; }
+
+    .service-tag {
+      display: inline-block;
+      margin-top: 1.25rem;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background-color: color-mix(in srgb, var(--accent) 10%, transparent);
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+    }
+
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       TRANSPORT / BOOKING SECTION  (from cars.html, restyled to match)
+    ============================================================ */
+    .transport-section{
+      position:relative;
+      padding:90px 20px;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 10% 10%,rgba(212,80,10,.10),transparent 28%),
+        radial-gradient(circle at 90% 80%,rgba(26,22,16,.07),transparent 30%),
+        var(--bg);
+    }
+
+    .transport-container{
+      max-width:1280px;
+      margin:auto;
+    }
+
+    .transport-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:30px;
+      margin-bottom:42px;
+    }
+
+    .header-left{
+      max-width:720px;
+    }
+
+    .small-title{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      color:var(--accent);
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:2.5px;
+      text-transform:uppercase;
+      margin-bottom:15px;
+    }
+
+    .small-title:before{
+      content:"";
+      width:32px;
+      height:3px;
+      border-radius:20px;
+      background:var(--accent);
+    }
+
+    .transport-header h2{
+      font-family:var(--font-display);
+      font-size:48px;
+      line-height:1.08;
+      letter-spacing:-1.5px;
+      margin-bottom:15px;
+      color:var(--text);
+    }
+
+    .transport-header h2 span{
+      color:var(--accent);
+    }
+
+    .transport-header p{
+      color:var(--fg);
+      font-size:16px;
+      line-height:1.75;
+      max-width:650px;
+    }
+
+    .header-stat{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:17px 22px;
+      display:flex;
+      align-items:center;
+      gap:13px;
+      box-shadow:0 10px 30px rgba(26,22,16,.06);
+      min-width:210px;
+    }
+
+    .stat-icon{
+      width:43px;
+      height:43px;
+      border-radius:13px;
+      background:color-mix(in srgb, var(--accent) 12%, transparent);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:21px;
+    }
+
+    .header-stat strong{
+      display:block;
+      font-size:15px;
+      color:var(--text);
+    }
+
+    .header-stat span{
+      color:var(--fg);
+      font-size:11px;
+    }
+
+    .transport-filters{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:28px;
+    }
+
+    .filter-btn{
+      border:1px solid var(--border);
+      background:var(--surface);
+      color:var(--fg);
+      padding:10px 17px;
+      border-radius:30px;
+      font-size:12px;
+      font-weight:800;
+      cursor:pointer;
+      transition:.25s;
+      font-family:var(--font-body);
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active{
+      background:var(--surface-strong);
+      color:var(--text-on-surface-strong);
+      border-color:var(--surface-strong);
+      transform:translateY(-2px);
+    }
+
+    .transport-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:24px;
+    }
+
+    .transport-card{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:24px;
+      overflow:hidden;
+      position:relative;
+      box-shadow:0 12px 35px rgba(26,22,16,.06);
+      transition:.35s ease;
+    }
+
+    .transport-card:hover{
+      transform:translateY(-8px);
+      box-shadow:0 25px 60px rgba(26,22,16,.13);
+    }
+
+    .card-image{
+      height:225px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .card-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transition:.6s ease;
+    }
+
+    .transport-card:hover .card-image img{
+      transform:scale(1.08);
+    }
+
+    .card-image:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,.04),
+        rgba(0,0,0,.55)
+      );
+    }
+
+    .card-badge{
+      position:absolute;
+      top:15px;
+      left:15px;
+      z-index:3;
+      background:rgba(255,255,255,.96);
+      color:var(--accent);
+      padding:8px 12px;
+      border-radius:30px;
+      font-size:9px;
+      font-weight:900;
+      letter-spacing:1px;
+    }
+
+    .card-price{
+      position:absolute;
+      right:15px;
+      bottom:15px;
+      z-index:3;
+      background:rgba(255,255,255,.95);
+      padding:9px 13px;
+      border-radius:11px;
+      font-size:11px;
+      font-weight:900;
+      color:var(--text);
+    }
+
+    .vehicle-icon{
+      position:absolute;
+      left:21px;
+      bottom:-23px;
+      width:52px;
+      height:52px;
+      border-radius:16px;
+      background:var(--surface);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:25px;
+      z-index:5;
+      box-shadow:0 7px 20px rgba(0,0,0,.12);
+    }
+
+    .card-content{
+      padding:35px 22px 22px;
+    }
+
+    .card-content h3{
+      font-family:var(--font-display);
+      font-size:21px;
+      margin-bottom:9px;
+      letter-spacing:-.3px;
+      color:var(--text);
+    }
+
+    .card-content p{
+      font-size:13px;
+      color:var(--fg);
+      line-height:1.7;
+      min-height:66px;
+    }
+
+    .features{
+      display:flex;
+      flex-wrap:wrap;
+      gap:7px;
+      margin:17px 0 20px;
+    }
+
+    .features span{
+      font-size:10px;
+      font-weight:700;
+      color:var(--fg);
+      background:var(--bg);
+      border:1px solid var(--border);
+      padding:7px 9px;
+      border-radius:8px;
+    }
+
+    .book-btn{
+      width:100%;
+      border:0;
+      padding:14px 17px;
+      border-radius:12px;
+      background:var(--accent);
+      color:var(--text-on-accent);
+      font-size:13px;
+      font-weight:900;
+      cursor:pointer;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:8px;
+      transition:.25s;
+      font-family:var(--font-body);
+    }
+
+    .book-btn:hover{
+      background:var(--link-hover);
+      transform:translateY(-2px);
+    }
+
+    .book-btn .arrow{
+      transition:.25s;
+    }
+
+    .book-btn:hover .arrow{
+      transform:translateX(5px);
+    }
+
+    /* MODAL */
+    .booking-modal{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(26,22,16,.78);
+      backdrop-filter:blur(7px);
+      z-index:9999;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+    }
+
+    .booking-modal.active{
+      display:flex;
+    }
+
+    .modal-container{
+      width:100%;
+      max-width:760px;
+      max-height:94vh;
+      overflow:auto;
+      background:var(--surface);
+      border-radius:26px;
+      box-shadow:0 30px 100px rgba(0,0,0,.3);
+      position:relative;
+    }
+
+    .modal-top{
+      padding:27px 30px;
+      background:
+        linear-gradient(135deg,var(--surface-strong),#26354f);
+      color:var(--text-on-surface-strong);
+      position:relative;
+    }
+
+    .modal-top-content{
+      display:flex;
+      align-items:center;
+      gap:15px;
+    }
+
+    .modal-vehicle-icon{
+      width:52px;
+      height:52px;
+      border-radius:16px;
+      background:rgba(255,255,255,.12);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:26px;
+    }
+
+    .modal-top h2{
+      font-size:24px;
+      margin-bottom:4px;
+      font-family:var(--font-display);
+      color:var(--text-on-surface-strong);
+    }
+
+    .modal-top p{
+      color:#cbd5e1;
+      font-size:12px;
+    }
+
+    .modal-close{
+      position:absolute;
+      right:18px;
+      top:18px;
+      width:38px;
+      height:38px;
+      border:0;
+      border-radius:50%;
+      background:rgba(255,255,255,.12);
+      color:#fff;
+      font-size:23px;
+      cursor:pointer;
+    }
+
+    .modal-body{
+      padding:28px 30px;
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:17px;
+    }
+
+    .form-field{
+      display:flex;
+      flex-direction:column;
+      gap:7px;
+    }
+
+    .form-field.full{
+      grid-column:1/-1;
+    }
+
+    .form-field label{
+      font-size:11px;
+      font-weight:900;
+      color:var(--text);
+      font-family:var(--font-body);
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea{
+      width:100%;
+      border:1px solid var(--border);
+      border-radius:11px;
+      padding:13px;
+      font-family:var(--font-body);
+      font-size:13px;
+      outline:none;
+      background:var(--bg);
+      transition:.2s;
+      color:var(--text);
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus{
+      border-color:var(--accent);
+      box-shadow:0 0 0 3px rgba(212,80,10,.1);
+      background:var(--surface);
+    }
+
+    .form-field textarea{
+      resize:vertical;
+    }
+
+    .submit-btn{
+      width:100%;
+      margin-top:20px;
+      padding:15px;
+      border:0;
+      border-radius:12px;
+      background:var(--accent);
+      color:var(--text-on-accent);
+      font-size:14px;
+      font-weight:900;
+      cursor:pointer;
+      font-family:var(--font-body);
+    }
+
+    .submit-btn:hover{
+      background:var(--link-hover);
+    }
+
+    .success-box{
+      display:none;
+      text-align:center;
+      padding:55px 25px;
+    }
+
+    .success-box.active{
+      display:block;
+    }
+
+    .success-check{
+      width:70px;
+      height:70px;
+      border-radius:50%;
+      background:#22c55e;
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:34px;
+      margin:0 auto 18px;
+    }
+
+    .success-box h3{
+      font-size:25px;
+      margin-bottom:9px;
+      font-family:var(--font-display);
+      color:var(--text);
+    }
+
+    .success-box p{
+      color:var(--fg);
+      font-size:13px;
+      line-height:1.7;
+      max-width:480px;
+      margin:auto;
+    }
+
+    .done-btn{
+      margin-top:22px;
+      border:0;
+      padding:11px 27px;
+      border-radius:10px;
+      background:var(--surface-strong);
+      color:var(--text-on-surface-strong);
+      font-weight:800;
+      cursor:pointer;
+      font-family:var(--font-body);
+    }
+
+    @media(max-width:1000px){
+      .transport-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .transport-header{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+    }
+
+    @media(max-width:650px){
+      .transport-section{
+        padding:65px 14px;
+      }
+
+      .transport-header h2{
+        font-size:34px;
+      }
+
+      .transport-header p{
+        font-size:14px;
+      }
+
+      .header-stat{
+        width:100%;
+      }
+
+      .transport-grid{
+        grid-template-columns:1fr;
+        max-width:520px;
+        margin:auto;
+      }
+
+      .card-image{
+        height:215px;
+      }
+
+      .form-grid{
+        grid-template-columns:1fr;
+      }
+
+      .form-field.full{
+        grid-column:auto;
+      }
+
+      .modal-top{
+        padding:23px 18px;
+      }
+
+      .modal-body{
+        padding:23px 18px;
+      }
+
+      .modal-top h2{
+        font-size:21px;
+      }
+    }
+
+    /* ============================================================
+       FLEET  (from Services.html)
+    ============================================================ */
+    .fleet-section {
+      padding-block: 6rem;
+      background-color: var(--bg);
+    }
+
+    .fleet-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .fleet-header-text h2 {
+      font-size: clamp(var(--text-3xl), 4vw, var(--text-4xl));
+      margin-top: 0.75rem;
+    }
+
+    .fleet-header-note {
+      font-size: var(--text-base);
+      color: var(--fg);
+      max-width: 36ch;
+      text-align: right;
+      line-height: 1.6;
+    }
+
+    .fleet-scroll-track {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 1.5rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+
+    .fleet-card {
+      flex: 0 0 300px;
+      scroll-snap-align: start;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: box-shadow var(--duration-base) ease;
+    }
+    .fleet-card:hover {
+      box-shadow: 0 10px 32px color-mix(in srgb, var(--text) 10%, transparent);
+    }
+
+    .fleet-card-img {
+      height: 190px;
+      overflow: hidden;
+    }
+
+    .fleet-card-img img {
+      transition: transform var(--duration-slow) ease;
+    }
+    .fleet-card:hover .fleet-card-img img {
+      transform: scale(1.05);
+    }
+
+    .fleet-card-body {
+      padding: 1.5rem;
+    }
+
+    .fleet-card-body h3 {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .fleet-card-body .fleet-meta {
+      font-size: var(--text-sm);
+      color: var(--fg);
+      margin-bottom: 1rem;
+    }
+
+    .fleet-specs {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .fleet-spec {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: var(--text-xs);
+      color: var(--fg);
+      font-weight: 600;
+    }
+
+    .fleet-spec svg { color: var(--accent); flex-shrink: 0; }
+
+    @media (max-width: 600px) {
+      .fleet-header-note { text-align: left; }
+      .fleet-card { flex: 0 0 270px; }
+    }
+
+    /* ============================================================
+       TESTIMONIALS  (from Services.html)
+    ============================================================ */
+    .testimonials-section {
+      padding-block: 6rem;
+      background-color: var(--surface);
+    }
+
+    .testimonials-header {
+      max-width: 44ch;
+      margin-bottom: 3.5rem;
+    }
+
+    .testimonials-header h2 {
+      font-size: clamp(var(--text-3xl), 4vw, var(--text-4xl));
+      margin-top: 0.75rem;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .testimonial-card {
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      transition: box-shadow var(--duration-base) ease;
+    }
+    .testimonial-card:hover {
+      box-shadow: 0 8px 28px color-mix(in srgb, var(--text) 8%, transparent);
+    }
+
+    .testimonial-stars {
+      display: flex;
+      gap: 3px;
+    }
+
+    .star-filled {
+      width: 16px; height: 16px;
+      background-color: #f59e0b;
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+
+    .testimonial-quote {
+      font-size: var(--text-base);
+      color: var(--text);
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      margin-top: auto;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .testimonial-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background-color: color-mix(in srgb, var(--accent) 15%, transparent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-family: var(--font-display);
+      font-size: var(--text-base);
+      color: var(--accent);
+    }
+
+    .testimonial-author-name {
+      font-weight: 700;
+      font-size: var(--text-sm);
+      color: var(--text);
+      display: block;
+    }
+    .testimonial-author-role {
+      font-size: var(--text-xs);
+      color: var(--fg);
+    }
+
+    @media (max-width: 900px) {
+      .testimonials-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .testimonials-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       CTA  (from Services.html)
+    ============================================================ */
+    .cta-section {
+      padding-block: 6rem;
+      background-color: var(--surface-strong);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 80% 50%, color-mix(in srgb, var(--accent) 18%, transparent) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .cta-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 3rem;
+      position: relative;
+    }
+
+    .cta-content .cta-eyebrow {
+      color: var(--link-on-strong);
+      margin-bottom: 1rem;
+    }
+
+    .cta-content h2 {
+      font-size: clamp(var(--text-3xl), 4vw, 2.75rem);
+      color: var(--text-on-surface-strong);
+      margin-bottom: 1.25rem;
+      max-width: 22ch;
+    }
+
+    .cta-content p {
+      font-size: var(--text-lg);
+      color: color-mix(in srgb, var(--text-on-surface-strong) 75%, transparent);
+      max-width: 48ch;
+      line-height: 1.7;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1rem;
+      flex-shrink: 0;
+    }
+
+    .cta-phone {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      background-color: var(--primary);
+      color: var(--text-on-accent);
+      padding: 1rem 2rem;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: var(--text-lg);
+      transition: background-color var(--duration-fast) ease, transform var(--duration-fast) ease;
+      white-space: nowrap;
+    }
+    .cta-phone:hover { background-color: var(--link-hover); color: var(--text-on-accent); }
+    .cta-phone:active { transform: scale(0.97); }
+
+    .cta-whatsapp {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      text-decoration: none;
+      color: var(--link-on-strong);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      transition: color var(--duration-fast) ease;
+    }
+    .cta-whatsapp:hover { color: var(--link-hover-on-strong); }
+
+    .cta-trust {
+      margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid color-mix(in srgb, var(--text-on-surface-strong) 15%, transparent);
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .cta-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: color-mix(in srgb, var(--text-on-surface-strong) 70%, transparent);
+      font-size: var(--text-sm);
+      font-weight: 600;
+    }
+
+    .cta-trust-item svg { color: var(--accent); flex-shrink: 0; }
+
+    @media (max-width: 760px) {
+      .cta-inner { grid-template-columns: 1fr; }
+      .cta-actions { align-items: flex-start; }
+    }
+
+    /* ============================================================
+       BOOKING PAGE SECTION  (from Services.html)
+    ============================================================ */
+    .book-wrap { max-width: 1100px; margin: 0 auto; padding: 0 6vw; }
+    .book-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .book-form-card { background: var(--surface, #fff); border: 1px solid var(--border, #e2d9ce); border-radius: 16px; padding: 2.5rem; }
+    .book-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: var(--text-sm, 0.8125rem); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent, #d4500a); margin-bottom: 0.75rem; }
+    .book-eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent, #d4500a); display: inline-block; }
+    .book-heading { font-family: var(--font-display, abril, serif); font-size: clamp(1.75rem, 3.5vw, 2.5rem); color: var(--text, #1a1610); line-height: 1.15; margin: 0 0 0.5rem; }
+    .book-sub { font-size: var(--text-base, 1rem); color: var(--fg, #5c5448); margin: 0 0 2rem; line-height: 1.6; }
+    .book-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1.25rem; }
+    .book-label { font-size: var(--text-sm, 0.8125rem); font-weight: 700; color: var(--text, #1a1610); letter-spacing: 0.03em; }
+    .book-input, .book-select, .book-textarea { width: 100%; box-sizing: border-box; padding: 0.75rem 1rem; border: 1.5px solid var(--border, #e2d9ce); border-radius: 10px; background: var(--bg, #faf8f4); color: var(--text, #1a1610); font-family: var(--font-body, nunito-sans, sans-serif); font-size: var(--text-base, 1rem); outline: none; transition: border-color 0.2s; }
+    .book-input:focus, .book-select:focus, .book-textarea:focus { border-color: var(--accent, #d4500a); background: #fff; }
+    .book-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .book-textarea { resize: vertical; min-height: 90px; }
+    .book-submit { width: 100%; padding: 1rem 2rem; background: var(--accent, #d4500a); color: var(--text-on-accent, #fff); font-family: var(--font-body, nunito-sans, sans-serif); font-size: var(--text-base, 1rem); font-weight: 700; border: none; border-radius: 10px; cursor: pointer; letter-spacing: 0.04em; margin-top: 0.5rem; transition: background 0.2s; }
+    .book-submit:hover { background: var(--link-hover, #a83d07); }
+    .book-whatsapp { width: 100%; padding: 0.9rem 2rem; background: transparent; color: var(--accent, #d4500a); font-family: var(--font-body, nunito-sans, sans-serif); font-size: var(--text-base, 1rem); font-weight: 700; border: 2px solid var(--accent, #d4500a); border-radius: 10px; cursor: pointer; letter-spacing: 0.04em; margin-top: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; transition: background 0.2s, color 0.2s; }
+    .book-whatsapp:hover { background: var(--accent, #d4500a); color: #fff; }
+    .book-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+    .book-info-card { background: var(--surface-strong, #1a1610); border-radius: 16px; padding: 2rem; color: var(--text-on-surface-strong, #f5ede3); }
+    .book-info-title { font-family: var(--font-display, abril, serif); font-size: var(--text-xl, 1.25rem); margin: 0 0 1.25rem; color: var(--text-on-surface-strong, #f5ede3); }
+    .book-info-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 1.1rem; }
+    .book-info-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(212,80,10,0.18); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .book-info-icon svg { width: 18px; height: 18px; fill: var(--accent, #d4500a); }
+    .book-info-text strong { display: block; font-size: var(--text-sm, 0.8125rem); font-weight: 700; color: var(--text-on-surface-strong, #f5ede3); margin-bottom: 2px; }
+    .book-info-text span { font-size: var(--text-sm, 0.8125rem); color: rgba(245,237,227,0.65); }
+    .book-trust-card { background: var(--surface, #fff); border: 1px solid var(--border, #e2d9ce); border-radius: 16px; padding: 1.75rem; }
+    .book-trust-title { font-family: var(--font-display, abril, serif); font-size: var(--text-lg, 1.125rem); color: var(--text, #1a1610); margin: 0 0 1.1rem; }
+    .book-trust-item { display: flex; align-items: center; gap: 10px; margin-bottom: 0.85rem; font-size: var(--text-sm, 0.8125rem); color: var(--fg, #5c5448); }
+    .book-trust-check { width: 20px; height: 20px; border-radius: 50%; background: rgba(212,80,10,0.12); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .book-trust-check svg { width: 11px; height: 11px; stroke: var(--accent, #d4500a); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .book-fleet-card { background: var(--surface, #fff); border: 1px solid var(--border, #e2d9ce); border-radius: 16px; padding: 1.75rem; }
+    .book-fleet-title { font-family: var(--font-display, abril, serif); font-size: var(--text-lg, 1.125rem); color: var(--text, #1a1610); margin: 0 0 1rem; }
+    .book-fleet-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .book-fleet-chip { padding: 5px 14px; border-radius: 999px; border: 1.5px solid var(--border, #e2d9ce); font-size: var(--text-xs, 0.75rem); font-weight: 700; color: var(--fg, #5c5448); background: var(--bg, #faf8f4); letter-spacing: 0.04em; }
+    @media (max-width: 768px) {
+      .book-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .book-row { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       FOOTER  (from Services.html)
+    ============================================================ */
+    footer[data-name="Site footer"] {
+      background-color: var(--surface-strong);
+      color: var(--text-on-surface-strong);
+      --link: var(--link-on-strong);
+      --link-hover: var(--link-hover-on-strong);
+      padding-block: 3.5rem 2rem;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid color-mix(in srgb, var(--text-on-surface-strong) 12%, transparent);
+      margin-bottom: 2rem;
+    }
+
+    .footer-brand-name {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      color: var(--text-on-surface-strong);
+      margin-bottom: 0.75rem;
+    }
+    .footer-brand-name span { color: var(--accent); }
+
+    .footer-brand-desc {
+      font-size: var(--text-sm);
+      color: color-mix(in srgb, var(--text-on-surface-strong) 65%, transparent);
+      max-width: 34ch;
+      line-height: 1.7;
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: color-mix(in srgb, var(--text-on-surface-strong) 55%, transparent);
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-col a {
+      font-size: var(--text-sm);
+      color: var(--link);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .footer-col a:hover { color: var(--link-hover); text-decoration: underline; text-underline-offset: 0.15em; }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-legal {
+      font-size: var(--text-xs);
+      color: color-mix(in srgb, var(--text-on-surface-strong) 45%, transparent);
+    }
+
+    .footer-cities {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-city-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: color-mix(in srgb, var(--text-on-surface-strong) 55%, transparent);
+    }
+
+    .footer-city-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background-color: var(--accent);
+    }
+
+    @media (max-width: 760px) {
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+    @media (max-width: 480px) {
+      .footer-inner { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       NAV
+  ============================================================ -->
+  <!-- <nav data-name="Primary nav" aria-label="Primary navigation">
+    <div class="container nav-inner">
+      <a class="nav-logo" href="#">Siya<span>Travels</span></a>
+      <div class="nav-desktop">
+        <a href="#services">Services</a>
+        <a href="#fleet">Our Fleet</a>
+        <a href="#transport">Transport</a>
+        <a href="#testimonials">Reviews</a>
+        <a class="nav-cta" href="#transport">Book a Ride</a>
+      </div>
+      <details class="nav-mobile">
+        <summary class="nav-toggle" aria-label="Open navigation menu">
+          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </summary>
+        <div class="nav-drawer">
+          <a href="#services">Services</a>
+          <a href="#fleet">Our Fleet</a>
+          <a href="#transport">Transport</a>
+          <a href="#testimonials">Reviews</a>
+          <a style="color: var(--accent); font-weight: 700;" href="#booking">Book a Ride</a>
+        </div>
+      </details>
+    </div>
+  </nav> -->
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section id="hero" aria-label="Hero">
+    <div class="hero-section">
+      <div class="container">
+        <div class="hero-inner">
+          <div class="hero-content">
+            <div class="hero-eyebrow">
+              <span class="hero-eyebrow-dot" aria-hidden="true"></span>
+              <span class="eyebrow">Pune &amp; Goa Car Rentals</span>
+            </div>
+            <h1 class="hero-heading">
+              Your Road,<br><em>Our Wheels.</em>
+            </h1>
+            <p class="hero-sub">Siya Travels puts you in a clean, comfortable car — whether you're running errands across Pune or chasing sunsets on the Goa coast. Reliable drivers, transparent pricing, no surprises.</p>
+            <div class="hero-actions">
+              <a class="btn-primary btn" href="#booking">Book a Ride</a>
+              <a class="btn-ghost btn" href="#transport">See Our Fleet</a>
+            </div>
+            <div class="hero-stats">
+              <div>
+                <span class="hero-stat-num">5000+</span>
+                <span class="hero-stat-label">Happy Trips</span>
+              </div>
+              <div>
+                <span class="hero-stat-num">2</span>
+                <span class="hero-stat-label">Cities Covered</span>
+              </div>
+              <div>
+                <span class="hero-stat-num">8+</span>
+                <span class="hero-stat-label">Years on Road</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-image-col">
+            <img alt="White SUV parked on a scenic Goa coastal road at golden hour, palm trees and ocean in background" src="images/hero-section-image.jpg">
+            <div class="hero-image-badge">
+              <div class="hero-badge-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" color="var(--accent)" aria-hidden="true">
+                  <path d="M12 22s-8-5.5-8-12a8 8 0 1 1 16 0c0 6.5-8 12-8 12z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div class="hero-badge-text">
+                <strong>Pune &amp; Goa</strong>
+                <span>Available 24/7</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVICES
+  ============================================================ -->
+  <!-- <section id="services" aria-label="Services">
+    <div class="services-section">
+      <div class="container">
+        <div class="services-header">
+          <span class="eyebrow">What We Offer</span>
+          <h2>Built for every kind of journey</h2>
+          <p>From city commutes to long coastal drives, Siya Travels has a service that fits your schedule, your group, and your budget.</p>
+        </div>
+        <div class="services-grid">
+
+          <div class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="1" y="3" width="15" height="13" rx="2"></rect>
+                <path d="M16 8h4l3 5v3h-7V8z"></path>
+                <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                <circle cx="18.5" cy="18.5" r="2.5"></circle>
+              </svg>
+            </div>
+            <h3>Local Pune Rides</h3>
+            <p>Airport pick-up, office commutes, weekend errands — we keep Pune moving. Book by the hour or by the day.</p>
+            <span class="service-tag">Pune City</span>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s-8-5.5-8-12a8 8 0 1 1 16 0c0 6.5-8 12-8 12z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <h3>Goa Getaway</h3>
+            <p>Self-drive or chauffeured, we have cars ready in Goa for beach hops, heritage trails, and everything between Panaji and Palolem.</p>
+            <span class="service-tag">Goa Exploration</span>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 11l19-9-9 19-2-8-8-2z"></path>
+              </svg>
+            </div>
+            <h3>Pune–Goa Outstation</h3>
+            <p>One-way or round trip on the NH-48 corridor. Experienced drivers, comfortable cars, and a fixed price agreed before you leave.</p>
+            <span class="service-tag">Intercity</span>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="7" width="20" height="14" rx="2"></rect>
+                <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"></path>
+              </svg>
+            </div>
+            <h3>Corporate Packages</h3>
+            <p>Monthly subscriptions and bulk booking rates for companies. Dedicated vehicles, consistent drivers, and monthly billing.</p>
+            <span class="service-tag">Business</span>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+            </div>
+            <h3>Airport Transfers</h3>
+            <p>On-time pickup from Pune International and Goa's Mopa airport. Flight-tracked arrivals so we're there even if your flight isn't.</p>
+            <span class="service-tag">Pick-up &amp; Drop</span>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
+            <h3>Weddings &amp; Events</h3>
+            <p>Decorated cars, uniformed drivers, and coordinated fleets for weddings, family functions, and private celebrations.</p>
+            <span class="service-tag">Special Occasions</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- ============================================================
+       TRANSPORT / BOOKING SECTION  (from cars.html)
+  ============================================================ -->
+  <section class="transport-section" id="transport">
+    <div class="transport-container">
+
+      <!-- HEADER -->
+      <!-- <div class="transport-header">
+        <div class="header-left">
+          <div class="small-title">Transport Services</div>
+          <h2>
+            Travel <span>Your Way.</span><br>
+            We'll Handle The Ride.
+          </h2>
+          <p>
+            Reliable vehicles for local travel, outstation journeys,
+            family trips, corporate travel, weddings and special occasions.
+            Choose your ride and send us your booking requirement.
+          </p>
+        </div>
+        <div class="header-stat">
+          <div class="stat-icon">🛡️</div>
+          <div>
+            <strong>Safe &amp; Reliable</strong>
+            <span>Travel with confidence</span>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- FILTERS -->
+      <div class="transport-filters">
+        <button class="filter-btn active" onclick="filterVehicles('all',this)">All Vehicles</button>
+        <button class="filter-btn" onclick="filterVehicles('group',this)">Group Travel</button>
+        <button class="filter-btn" onclick="filterVehicles('car',this)">Cars &amp; Cabs</button>
+        <button class="filter-btn" onclick="filterVehicles('premium',this)">Premium</button>
+      </div>
+
+      <!-- CARDS -->
+      <div class="transport-grid">
+
+        <!-- BUS -->
+        <article class="transport-card" data-category="group">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=85" alt="Bus transportation">
+            <span class="card-badge">GROUP TRAVEL</span>
+            <span class="card-price">Book on Request</span>
+            <div class="vehicle-icon">🚌</div>
+          </div>
+          <div class="card-content">
+            <h3>Bus &amp; Traveller</h3>
+            <p>Comfortable buses for family tours, school trips, corporate travel and group journeys.</p>
+            <div class="features">
+              <span>AC / Non-AC</span>
+              <span>Group Trips</span>
+              <span>Outstation</span>
+            </div>
+            <button class="book-btn" onclick="openBooking('Bus & Traveller','🚌')">
+              Book This Vehicle <span class="arrow">→</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- 4 WHEELER -->
+        <article class="transport-card" data-category="car">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1200&q=85" alt="4 wheeler car">
+            <span class="card-badge">POPULAR</span>
+            <span class="card-price">Book on Request</span>
+            <div class="vehicle-icon">🚙</div>
+          </div>
+          <div class="card-content">
+            <h3>4-Wheelers</h3>
+            <p>Choose hatchbacks, sedans and SUVs for city rides, family travel and outstation journeys.</p>
+            <div class="features">
+              <span>Hatchback</span>
+              <span>Sedan</span>
+              <span>SUV</span>
+            </div>
+            <button class="book-btn" onclick="openBooking('4-Wheeler','🚙')">
+              Book This Vehicle <span class="arrow">→</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- PREMIUM -->
+        <article class="transport-card" data-category="premium">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1200&q=85" alt="Premium luxury car">
+            <span class="card-badge">PREMIUM</span>
+            <span class="card-price">Book on Request</span>
+            <div class="vehicle-icon">🚘</div>
+          </div>
+          <div class="card-content">
+            <h3>Premium Cars</h3>
+            <p>Premium vehicles for corporate travel, weddings, events and special occasions.</p>
+            <div class="features">
+              <span>Luxury</span>
+              <span>Chauffeur</span>
+              <span>Events</span>
+            </div>
+            <button class="book-btn" onclick="openBooking('Premium Car','🚘')">
+              Book This Vehicle <span class="arrow">→</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- TEMPO -->
+        <article class="transport-card" data-category="group">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=85" alt="Tempo traveller">
+            <span class="card-badge">FAMILY &amp; GROUP</span>
+            <span class="card-price">Book on Request</span>
+            <div class="vehicle-icon">🚐</div>
+          </div>
+          <div class="card-content">
+            <h3>Tempo Traveller</h3>
+            <p>Spacious vehicles for family holidays, group tours and long-distance journeys.</p>
+            <div class="features">
+              <span>9–17 Seats</span>
+              <span>AC</span>
+              <span>Tour Trips</span>
+            </div>
+            <button class="book-btn" onclick="openBooking('Tempo Traveller','🚐')">
+              Book This Vehicle <span class="arrow">→</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- CAB -->
+        <article class="transport-card" data-category="car">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=85" alt="Cab and taxi">
+            <span class="card-badge">CITY &amp; OUTSTATION</span>
+            <span class="card-price">Book on Request</span>
+            <div class="vehicle-icon">🚖</div>
+          </div>
+          <div class="card-content">
+            <h3>Cab &amp; Taxi</h3>
+            <p>Reliable cabs for local rides, one-way journeys, round trips and outstation travel.</p>
+            <div class="features">
+              <span>One Way</span>
+              <span>Round Trip</span>
+              <span>Local</span>
+            </div>
+            <button class="book-btn" onclick="openBooking('Cab & Taxi','🚖')">
+              Book This Vehicle <span class="arrow">→</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- MINI BUS -->
+        <article class="transport-card" data-category="group">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1200&q=85" alt="Mini bus coach">
+            <span class="card-badge">LARGE GROUPS</span>
+            <span class="card-price">Book on Request</span>
+            <div class="vehicle-icon">🚍</div>
+          </div>
+          <div class="card-content">
+            <h3>Mini Bus / Coach</h3>
+            <p>Perfect for corporate events, weddings, school trips, tours and larger groups.</p>
+            <div class="features">
+              <span>Large Groups</span>
+              <span>Events</span>
+              <span>Corporate</span>
+            </div>
+            <button class="book-btn" onclick="openBooking('Mini Bus / Coach','🚍')">
+              Book This Vehicle <span class="arrow">→</span>
+            </button>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BOOKING MODAL  (from cars.html)
+  ============================================================ -->
+  <div class="booking-modal" id="bookingModal">
+
+    <div class="modal-container">
+      <div class="modal-top">
+        <button class="modal-close" onclick="closeBooking()">×</button>
+        <div class="modal-top-content">
+          <div class="modal-vehicle-icon" id="modalIcon">🚘</div>
+          <div>
+            <h2>Book Your Ride</h2>
+            <p id="selectedVehicle">Select your preferred vehicle</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <form id="bookingForm">
+          <input type="hidden" id="vehicleType">
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label>FULL NAME</label>
+              <input type="text" name="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-field">
+              <label>MOBILE NUMBER</label>
+              <input type="tel" name="phone" placeholder="Enter mobile number" required>
+            </div>
+            <div class="form-field">
+              <label>PICKUP LOCATION</label>
+              <input type="text" name="pickup" placeholder="Where should we pick you?" required>
+            </div>
+            <div class="form-field">
+              <label>DROP LOCATION</label>
+              <input type="text" name="drop" placeholder="Where are you going?" required>
+            </div>
+            <div class="form-field">
+              <label>TRAVEL DATE</label>
+              <input type="date" name="date" required>
+            </div>
+            <div class="form-field">
+              <label>PICKUP TIME</label>
+              <input type="time" name="time" required>
+            </div>
+            <div class="form-field">
+              <label>PASSENGERS</label>
+              <select name="passengers" required>
+                <option value="">Select passengers</option>
+                <option>1–4</option>
+                <option>5–8</option>
+                <option>9–17</option>
+                <option>18–30</option>
+                <option>31+</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label>TRIP TYPE</label>
+              <select name="trip" required>
+                <option value="">Select trip type</option>
+                <option>Local</option>
+                <option>One Way</option>
+                <option>Round Trip</option>
+                <option>Outstation</option>
+                <option>Event / Function</option>
+              </select>
+            </div>
+            <div class="form-field full">
+              <label>ADDITIONAL REQUIREMENT</label>
+              <textarea name="message" rows="3" placeholder="Tell us about your travel requirement..."></textarea>
+            </div>
+          </div>
+
+          <button class="submit-btn" type="submit">Send Booking Request →</button>
+        </form>
+
+        <div class="success-box" id="successBox">
+          <div class="success-check">✓</div>
+          <h3>Booking Request Sent!</h3>
+          <p>
+            Thank you for your request. Our travel team will
+            contact you shortly to confirm vehicle availability,
+            pricing and booking details.
+          </p>
+          <button class="done-btn" onclick="closeBooking()">Done</button>
+        </div>
+      </div>    </div>
+  </div>
+
+  <!-- ============================================================
+       FLEET
+  ============================================================ -->
+  <!-- <section id="fleet" aria-label="Our Fleet">
+    <div class="fleet-section">
+      <div class="container">
+        <div class="fleet-header">
+          <div class="fleet-T-text">
+            <span class="eyebrow">Our Fleet</span>
+            <h2>Cars chosen for comfort, not just cost</h2>
+          </div>
+          <p class="fleet-header-note">Every car is serviced, insured, and inspected before each trip. Scroll to browse.</p>
+        </div>
+
+        <div class="fleet-scroll-track" aria-label="Vehicle fleet carousel" role="region">
+
+          <div class="fleet-card">
+            <div class="fleet-card-img">
+              <img alt="Maruti Swift Dzire white sedan parked neatly in a Pune urban setting, clean and polished" src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1200&q=85">
+            </div>
+            <div class="fleet-card-body">
+              <h3>Swift Dzire</h3>
+              <p class="fleet-meta">Compact Sedan — City &amp; Airport</p>
+              <div class="fleet-specs">
+                <span class="fleet-spec">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                  4 Seats
+                </span>
+                <span class="fleet-spec">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93 4.93 19.07"></path></svg>
+                  AC
+                </span>
+                <span class="fleet-spec">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M3 22V8l9-6 9 6v14H3z"></path></svg>
+                  CNG / Petrol
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="fleet-card">
+            <div class="fleet-card-img">
+              <img alt="Toyota Innova Crysta silver MPV on a highway near Goa with green hills in background" src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=85">
+            </div>
+            <div class="fleet-card-body">
+              <h3>Toyota Innova Crysta</h3>
+              <p class="fleet-meta">Premium MPV — Family &amp; Groups</p>
+              <div class="fleet-specs">
+                <span class="fleet-spec">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                  7 Seats
+                </span>
+                <span class="fleet-spec">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93 4.93 19.07"></path></svg>
+                  Dual AC
+                </span>
+                <span class="fleet-spec">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M3 22V8l9-6 9 6v14H3z"></path></svg>
+                  Diesel
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="fleet-card">
+            <div class="fleet-card-img">
+              <img alt="Maruti Ertiga grey MPV parked outside a hotel entrance, doors open, ready for guests" src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=85">
+            </div>
+            <div class="fleet-card-body">
+              <h3>Maruti Ertiga</h3>
+              <p class="fleet-meta">MPV — Outstation &amp; Events</p>
+              <div class="fleet-specs">
+                <span class="fleet-spec">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                  7 Seats
+                </span>
+                <span class="fleet-spec">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93 4.93 19.07"></path></svg>
+                  AC
+                </span>
+                <span class="fleet-spec">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M3 22V8l9-6 9 6v14H3z"></path></svg>
+                  CNG / Petrol
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="fleet-card">
+            <div class="fleet-card-img">
+              <img alt="Toyota Fortuner black SUV on an open mountain road, dramatic sky, premium feel" src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1200&q=85">
+            </div>
+            <div class="fleet-card-body">
+              <h3>Toyota Fortuner</h3>
+              <p class="fleet-meta">Luxury SUV — VIP &amp; Long Haul</p>
+              <div class="fleet-specs">
+                <span class="fleet-spec">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                  7 Seats
+                </span>
+                <span class="fleet-spec">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93 4.93 19.07"></path></svg>
+                  Premium AC
+                </span>
+                <span class="fleet-spec">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M3 22V8l9-6 9 6v14H3z"></path></svg>
+                  Diesel 4WD
+                </span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- ============================================================
+       TESTIMONIALS
+  ============================================================ -->
+  <!-- <section id="testimonials" aria-label="Customer reviews">
+    <div class="testimonials-section">
+      <div class="container">
+        <div class="testimonials-header">
+          <span class="eyebrow">Real Passengers, Real Trips</span>
+          <h2>What they say after the journey ends</h2>
+        </div>
+
+        <div class="testimonials-grid">
+
+          <div class="testimonial-card">
+            <div class="testimonial-stars" aria-label="5 out of 5 stars">
+              <span class="star-filled" aria-hidden="true"></span>
+              <span class="star-filled" aria-hidden="true"></span>
+              <span class="star-filled" aria-hidden="true"></span>
+              <span class="star-filled" aria-hidden="true"></span>
+              <span class="star-filled" aria-hidden="true"></span>
+            </div>
+            <p class="testimonial-quote">"Booked Siya Travels for a Pune airport drop at 4 AM. Driver was waiting before I even stepped outside. The Innova was spotless and the ride was smooth. Will not use anyone else."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar" aria-hidden="true">P</div>
+              <div>
+                <span class="testimonial-author-name">Priya Kulkarni</span>
+                <span class="testimonial-author-role">Marketing Manager, Pune</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-stars" aria-label="5 out of 5 stars">
+              <span class="star-filled" aria-hidden="true"></span>
+              <span class="star-filled" aria-hidden="true"></span>
+              <span class="star-filled" aria-hidden="true"></span>
+              <span class="star-filled" aria-hidden="true"></span>
+              <span class="star-filled" aria-hidden="true"></span>
+            </div>
+            <p class="testimonial-quote">"We hired Siya Travels for our Goa wedding — three Fortuners for the wedding party. Every car arrived on time, drivers wore formal shirts, and not a single hiccup across two days. Absolutely professional."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar" aria-hidden="true">R</div>
+              <div>
+                <span class="testimonial-author-name">Rohan Deshmukh</span>
+                <span class="testimonial-author-role">Software Engineer, Pune</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-stars" aria-label="5 out of 5 stars">
+              <span class="star-filled" aria-hidden="true"></span>
+              <span class="star-filled" aria-hidden="true"></span>
+              <span class="star-filled" aria-hidden="true"></span>
+              <span class="star-filled" aria-hidden="true"></span>
+              <span class="star-filled" aria-hidden="true"></span>
+            </div>
+            <p class="testimonial-quote">"Travelled Pune to Goa with my parents — the driver knew every good chai stop on the way. Price was fixed upfront, no drama at the end. My parents specifically asked me to book Siya next time too."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar" aria-hidden="true">A</div>
+              <div>
+                <span class="testimonial-author-name">Aisha Shaikh</span>
+                <span class="testimonial-author-role">Doctor, Goa</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- ============================================================
+       CTA
+  ============================================================ -->
+  <!-- <section id="contact" aria-label="Book a ride">
+    <div class="cta-section">
+      <div class="container">
+        <div class="cta-inner">
+          <div class="cta-content">
+            <span class="eyebrow cta-eyebrow">Ready to Move?</span>
+            <h2>Call us. We'll have a car at your door.</h2>
+            <p>No app downloads, no confusing portals. Just call or WhatsApp and our team will confirm your booking in minutes — any time of day.</p>
+            <div class="cta-trust">
+              <span class="cta-trust-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                Fixed Pricing, No Surprises
+              </span>
+              <span class="cta-trust-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                Available 24/7
+              </span>
+              <span class="cta-trust-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                Verified, Licensed Drivers
+              </span>
+            </div>
+          </div>
+          <div class="cta-actions">
+            <a class="cta-phone" href="tel:+919876543210">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              +91 98765 43210
+            </a>
+            <a class="cta-whatsapp" target="_blank" rel="noopener noreferrer" href="https://wa.me/919876543210">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"></path></svg>
+              Message on WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- ============================================================
+       BOOKING PAGE SECTION
+  ============================================================ -->
+  <!-- <section id="booking" style="background: var(--bg); padding: 5rem 0 6rem;">
+    <div class="book-wrap">
+      <div style="margin-bottom: 2.5rem;">
+        <div class="book-eyebrow"><span class="book-eyebrow-dot"></span>Book a Ride</div>
+        <h1 class="book-heading">Reserve your car in minutes</h1>
+        <p class="book-sub">Fill in your trip details and we'll confirm your booking within 15 minutes — or just WhatsApp us directly.</p>
+      </div>
+      <div class="book-grid">
+
+        <div class="book-form-card">
+          <form action="#" method="POST" style="margin:0;">
+            <div class="book-field">
+              <label class="book-label" for="bk-name">Full Name</label>
+              <input class="book-input" type="text" id="bk-name" placeholder="e.g. Priya Kulkarni" required>
+            </div>
+            <div class="book-row">
+              <div class="book-field">
+                <label class="book-label" for="bk-phone">Phone Number</label>
+                <input class="book-input" type="tel" id="bk-phone" name="phone" placeholder="+91 98765 43210" required>
+              </div>
+              <div class="book-field">
+                <label class="book-label" for="bk-email">Email (optional)</label>
+                <input class="book-input" type="email" id="bk-email" name="email" placeholder="you@example.com">
+              </div>
+            </div>
+            <div class="book-field">
+              <label class="book-label" for="bk-service">Service Type</label>
+              <select class="book-select" id="bk-service" name="service" required>
+                <option value="" disabled selected>Select a service…</option>
+                <option value="local-pune">Local Pune Rides</option>
+                <option value="goa-getaway">Goa Getaway</option>
+                <option value="outstation">Pune–Goa Outstation</option>
+                <option value="corporate">Corporate Packages</option>
+                <option value="airport">Airport Transfers</option>
+                <option value="events">Weddings &amp; Events</option>
+              </select>
+            </div>
+            <div class="book-field">
+              <label class="book-label" for="bk-car">Preferred Car</label>
+              <select class="book-select" id="bk-car" name="car">
+                <option value="" disabled selected>Select a car…</option>
+                <option value="dzire">Swift Dzire — Compact Sedan</option>
+                <option value="ertiga">Maruti Ertiga — MPV</option>
+                <option value="innova">Toyota Innova Crysta — Premium MPV</option>
+                <option value="fortuner">Toyota Fortuner — Luxury SUV</option>
+              </select>
+            </div>
+            <div class="book-row">
+              <div class="book-field">
+                <label class="book-label" for="bk-date">Pickup Date</label>
+                <input class="book-input" type="date" id="bk-date" name="date" required>
+              </div>
+              <div class="book-field">
+                <label class="book-label" for="bk-time">Pickup Time</label>
+                <input class="book-input" type="time" id="bk-time" name="time" required>
+              </div>
+            </div>
+            <div class="book-field">
+              <label class="book-label" for="bk-pickup">Pickup Location</label>
+              <input class="book-input" type="text" id="bk-pickup" name="pickup" placeholder="Address, landmark or airport terminal" required>
+            </div>
+            <div class="book-field">
+              <label class="book-label" for="bk-drop">Drop Location</label>
+              <input class="book-input" type="text" id="bk-drop" name="drop" placeholder="Destination address or city">
+            </div>
+            <div class="book-field">
+              <label class="book-label" for="bk-notes">Special Requests</label>
+              <textarea class="book-textarea" id="bk-notes" name="notes" placeholder="Child seat, extra luggage, specific route preference…"></textarea>
+            </div>
+            <button type="submit" class="book-submit">Confirm Booking Request →</button>
+          </form>
+          <a class="book-whatsapp" href="https://wa.me/919876543210">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>
+            Book via WhatsApp
+          </a>
+        </div>
+
+        <div class="book-sidebar">
+
+          <div class="book-info-card">
+            <p class="book-info-title">Reach us directly</p>
+            <div class="book-info-row">
+              <div class="book-info-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path></svg></div>
+              <div class="book-info-text"><strong>Call Us</strong><span>+91 98765 43210 — available 24/7</span></div>
+            </div>
+            <div class="book-info-row">
+              <div class="book-info-icon"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg></div>
+              <div class="book-info-text"><strong>WhatsApp</strong><span>Message us for instant confirmation</span></div>
+            </div>
+            <div class="book-info-row" style="margin-bottom:0;">
+              <div class="book-info-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg></div>
+              <div class="book-info-text"><strong>Email</strong><span>hello@siyatravels.in</span></div>
+            </div>
+          </div>
+
+          <div class="book-trust-card">
+            <p class="book-trust-title">Why book with Siya?</p>
+            <div class="book-trust-item"><div class="book-trust-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"></polyline></svg></div>Fixed pricing — no surge, no hidden fees</div>
+            <div class="book-trust-item"><div class="book-trust-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"></polyline></svg></div>Confirmation within 15 minutes</div>
+            <div class="book-trust-item"><div class="book-trust-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"></polyline></svg></div>Verified, licensed drivers only</div>
+            <div class="book-trust-item"><div class="book-trust-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"></polyline></svg></div>Clean, serviced cars before every trip</div>
+            <div class="book-trust-item" style="margin-bottom:0;"><div class="book-trust-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"></polyline></svg></div>5,000+ happy trips across Pune &amp; Goa</div>
+          </div>
+
+          <div class="book-fleet-card">
+            <p class="book-fleet-title">Available cars</p>
+            <div class="book-fleet-chips">
+              <span class="book-fleet-chip">Swift Dzire</span>
+              <span class="book-fleet-chip">Maruti Ertiga</span>
+              <span class="book-fleet-chip">Innova Crysta</span>
+              <span class="book-fleet-chip">Toyota Fortuner</span>
+            </div>
+            <p style="font-size: var(--text-xs); color: var(--muted); margin: 1rem 0 0; line-height: 1.5;">All cars are AC, insured, and inspected before each trip. Select your preference in the form.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <!-- <footer data-name="Site footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <p class="footer-brand-name">Siya<span>Travels</span></p>
+          <p class="footer-brand-desc">Reliable car rentals across Pune and Goa since 2018. Over 5,000 trips and counting — every one of them on time.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#services">Local Pune Rides</a></li>
+            <li><a href="#services">Goa Getaway</a></li>
+            <li><a href="#services">Pune–Goa Outstation</a></li>
+            <li><a href="#services">Corporate Packages</a></li>
+            <li><a href="#services">Airport Transfers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in Touch</h4>
+          <ul>
+            <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+            <li><a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">WhatsApp Us</a></li>
+            <li><a href="mailto:hello@siyatravels.in">hello@siyatravels.in</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-legal">© 2026 Siya Travels. All rights reserved.</p>
+        <div class="footer-cities">
+          <span class="footer-city-badge">
+            <span class="footer-city-dot" aria-hidden="true"></span>
+            Pune
+          </span>
+          <span class="footer-city-badge">
+            <span class="footer-city-dot" aria-hidden="true"></span>
+            Goa
+          </span>
+        </div>
+      </div>
+    </div>
+  </footer> -->
+
+  <!-- ============================================================
+       SCRIPT  (from cars.html — filter + modal logic, unchanged)
+  ============================================================ -->
+  <script>
+    /* FILTER */
+    function filterVehicles(category, button) {
+      const cards = document.querySelectorAll(".transport-card");
+      const buttons = document.querySelectorAll(".filter-btn");
+
+      buttons.forEach(btn => btn.classList.remove("active"));
+      button.classList.add("active");
+
+      cards.forEach(card => {
+        if (category === "all" || card.dataset.category === category) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+
+    /* BOOKING MODAL */
+    const modal = document.getElementById("bookingModal");
+    const form = document.getElementById("bookingForm");
+    const success = document.getElementById("successBox");
+
+    function openBooking(vehicle, icon) {
+      document.getElementById("selectedVehicle").textContent = "Booking: " + vehicle;
+      document.getElementById("vehicleType").value = vehicle;
+      document.getElementById("modalIcon").textContent = icon;
+
+      form.style.display = "block";
+      success.classList.remove("active");
+      modal.classList.add("active");
+      document.body.style.overflow = "hidden";
+
+      const submitBtn = form.querySelector(".submit-btn");
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Send Booking Request →";
+      }
+    }
+
+    function closeBooking() {
+      modal.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    modal.addEventListener("click", function(e) {
+      if (e.target === modal) {
+        closeBooking();
+      }
+    });
+
+    /* FORM SUBMIT */
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const button = form.querySelector(".submit-btn");
+      button.disabled = true;
+      button.textContent = "Sending Request...";
+
+      setTimeout(() => {
+        form.reset();
+        form.style.display = "none";
+        success.classList.add("active");
+
+        button.disabled = false;
+        button.textContent = "Send Booking Request →";
+      }, 900);
+    });
+
+    /* ESC KEY */
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape" && modal.classList.contains("active")) {
+        closeBooking();
+      }
+    });
+  </script>
+
+</body>
+</html>

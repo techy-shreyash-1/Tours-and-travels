@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- <title>Transport Services | Siya Tours & Travel</title> -->
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Inter,Arial,sans-serif;
+    background:#f5f7fa;
+    color:#172033;
+}
+
+/* =========================
+   MAIN SECTION
+========================= */
+
+.transport-section{
+    position:relative;
+    padding:90px 20px;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 10% 10%,rgba(249,115,22,.10),transparent 28%),
+        radial-gradient(circle at 90% 80%,rgba(15,23,42,.07),transparent 30%),
+        #f8fafc;
+}
+
+.transport-container{
+    max-width:1280px;
+    margin:auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.transport-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:30px;
+    margin-bottom:42px;
+}
+
+.header-left{
+    max-width:720px;
+}
+
+.small-title{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    color:#f97316;
+    font-size:12px;
+    font-weight:900;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    margin-bottom:15px;
+}
+
+.small-title:before{
+    content:"";
+    width:32px;
+    height:3px;
+    border-radius:20px;
+    background:#f97316;
+}
+
+.transport-header h2{
+    font-size:48px;
+    line-height:1.08;
+    letter-spacing:-1.5px;
+    margin-bottom:15px;
+}
+
+.transport-header h2 span{
+    color:#f97316;
+}
+
+.transport-header p{
+    color:#64748b;
+    font-size:16px;
+    line-height:1.75;
+    max-width:650px;
+}
+
+/* RIGHT STAT */
+
+.header-stat{
+    background:#fff;
+    border:1px solid #e7ebf0;
+    border-radius:18px;
+    padding:17px 22px;
+    display:flex;
+    align-items:center;
+    gap:13px;
+    box-shadow:0 10px 30px rgba(15,23,42,.06);
+    min-width:210px;
+}
+
+.stat-icon{
+    width:43px;
+    height:43px;
+    border-radius:13px;
+    background:#fff3e8;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:21px;
+}
+
+.header-stat strong{
+    display:block;
+    font-size:15px;
+}
+
+.header-stat span{
+    color:#64748b;
+    font-size:11px;
+}
+
+/* =========================
+   FILTERS
+========================= */
+
+.transport-filters{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:28px;
+}
+
+.filter-btn{
+    border:1px solid #e2e8f0;
+    background:#fff;
+    color:#475569;
+    padding:10px 17px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.filter-btn:hover,
+.filter-btn.active{
+    background:#172033;
+    color:#fff;
+    border-color:#172033;
+    transform:translateY(-2px);
+}
+
+/* =========================
+   GRID
+========================= */
+
+.transport-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.transport-card{
+    background:#fff;
+    border:1px solid #e7ebf0;
+    border-radius:24px;
+    overflow:hidden;
+    position:relative;
+    box-shadow:0 12px 35px rgba(15,23,42,.06);
+    transition:.35s ease;
+}
+
+.transport-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 25px 60px rgba(15,23,42,.13);
+}
+
+/* IMAGE */
+
+.card-image{
+    height:225px;
+    position:relative;
+    overflow:hidden;
+}
+
+.card-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:.6s ease;
+}
+
+.transport-card:hover .card-image img{
+    transform:scale(1.08);
+}
+
+.card-image:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,.04),
+        rgba(0,0,0,.55)
+    );
+}
+
+/* BADGE */
+
+.card-badge{
+    position:absolute;
+    top:15px;
+    left:15px;
+    z-index:3;
+    background:rgba(255,255,255,.96);
+    color:#f97316;
+    padding:8px 12px;
+    border-radius:30px;
+    font-size:9px;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+/* PRICE */
+
+.card-price{
+    position:absolute;
+    right:15px;
+    bottom:15px;
+    z-index:3;
+    background:rgba(255,255,255,.95);
+    padding:9px 13px;
+    border-radius:11px;
+    font-size:11px;
+    font-weight:900;
+    color:#172033;
+}
+
+/* ICON */
+
+.vehicle-icon{
+    position:absolute;
+    left:21px;
+    bottom:-23px;
+    width:52px;
+    height:52px;
+    border-radius:16px;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+    z-index:5;
+    box-shadow:0 7px 20px rgba(0,0,0,.12);
+}
+
+/* BODY */
+
+.card-content{
+    padding:35px 22px 22px;
+}
+
+.card-content h3{
+    font-size:21px;
+    margin-bottom:9px;
+    letter-spacing:-.3px;
+}
+
+.card-content p{
+    font-size:13px;
+    color:#64748b;
+    line-height:1.7;
+    min-height:66px;
+}
+
+/* FEATURES */
+
+.features{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin:17px 0 20px;
+}
+
+.features span{
+    font-size:10px;
+    font-weight:700;
+    color:#475569;
+    background:#f8fafc;
+    border:1px solid #e9edf2;
+    padding:7px 9px;
+    border-radius:8px;
+}
+
+/* BUTTON */
+
+.book-btn{
+    width:100%;
+    border:0;
+    padding:14px 17px;
+    border-radius:12px;
+    background:#f97316;
+    color:#fff;
+    font-size:13px;
+    font-weight:900;
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    transition:.25s;
+}
+
+.book-btn:hover{
+    background:#ea580c;
+    transform:translateY(-2px);
+}
+
+.book-btn .arrow{
+    transition:.25s;
+}
+
+.book-btn:hover .arrow{
+    transform:translateX(5px);
+}
+
+/* =========================
+   BOOKING MODAL
+========================= */
+
+.booking-modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,.78);
+    backdrop-filter:blur(7px);
+    z-index:9999;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+}
+
+.booking-modal.active{
+    display:flex;
+}
+
+.modal-container{
+    width:100%;
+    max-width:760px;
+    max-height:94vh;
+    overflow:auto;
+    background:#fff;
+    border-radius:26px;
+    box-shadow:0 30px 100px rgba(0,0,0,.3);
+    position:relative;
+}
+
+.modal-top{
+    padding:27px 30px;
+    background:
+        linear-gradient(135deg,#172033,#26354f);
+    color:#fff;
+    position:relative;
+}
+
+.modal-top-content{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.modal-vehicle-icon{
+    width:52px;
+    height:52px;
+    border-radius:16px;
+    background:rgba(255,255,255,.12);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:26px;
+}
+
+.modal-top h2{
+    font-size:24px;
+    margin-bottom:4px;
+}
+
+.modal-top p{
+    color:#cbd5e1;
+    font-size:12px;
+}
+
+.modal-close{
+    position:absolute;
+    right:18px;
+    top:18px;
+    width:38px;
+    height:38px;
+    border:0;
+    border-radius:50%;
+    background:rgba(255,255,255,.12);
+    color:#fff;
+    font-size:23px;
+    cursor:pointer;
+}
+
+.modal-body{
+    padding:28px 30px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:17px;
+}
+
+.form-field{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.form-field.full{
+    grid-column:1/-1;
+}
+
+.form-field label{
+    font-size:11px;
+    font-weight:900;
+    color:#334155;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea{
+    width:100%;
+    border:1px solid #e2e8f0;
+    border-radius:11px;
+    padding:13px;
+    font-family:inherit;
+    font-size:13px;
+    outline:none;
+    background:#fff;
+    transition:.2s;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus{
+    border-color:#f97316;
+    box-shadow:0 0 0 3px rgba(249,115,22,.1);
+}
+
+.form-field textarea{
+    resize:vertical;
+}
+
+.submit-btn{
+    width:100%;
+    margin-top:20px;
+    padding:15px;
+    border:0;
+    border-radius:12px;
+    background:#f97316;
+    color:#fff;
+    font-size:14px;
+    font-weight:900;
+    cursor:pointer;
+}
+
+.submit-btn:hover{
+    background:#ea580c;
+}
+
+/* SUCCESS */
+
+.success-box{
+    display:none;
+    text-align:center;
+    padding:55px 25px;
+}
+
+.success-box.active{
+    display:block;
+}
+
+.success-check{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    background:#22c55e;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:34px;
+    margin:0 auto 18px;
+}
+
+.success-box h3{
+    font-size:25px;
+    margin-bottom:9px;
+}
+
+.success-box p{
+    color:#64748b;
+    font-size:13px;
+    line-height:1.7;
+    max-width:480px;
+    margin:auto;
+}
+
+.done-btn{
+    margin-top:22px;
+    border:0;
+    padding:11px 27px;
+    border-radius:10px;
+    background:#172033;
+    color:#fff;
+    font-weight:800;
+    cursor:pointer;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1000px){
+
+    .transport-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .transport-header{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+}
+
+@media(max-width:650px){
+
+    .transport-section{
+        padding:65px 14px;
+    }
+
+    .transport-header h2{
+        font-size:34px;
+    }
+
+    .transport-header p{
+        font-size:14px;
+    }
+
+    .header-stat{
+        width:100%;
+    }
+
+    .transport-grid{
+        grid-template-columns:1fr;
+        max-width:520px;
+        margin:auto;
+    }
+
+    .card-image{
+        height:215px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-field.full{
+        grid-column:auto;
+    }
+
+    .modal-top{
+        padding:23px 18px;
+    }
+
+    .modal-body{
+        padding:23px 18px;
+    }
+
+    .modal-top h2{
+        font-size:21px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+
+<div class="transport-container">
+
+<!-- HEADER -->
+
+<div class="transport-header">
+
+<div class="header-left">
+
+
+
+</div>
+
+
+
+
+<!-- FILTERS -->
+
+<div class="transport-filters">
+
+<button class="filter-btn active" onclick="filterVehicles('all',this)">
+All Vehicles
+</button>
+
+<button class="filter-btn" onclick="filterVehicles('group',this)">
+Group Travel
+</button>
+
+<button class="filter-btn" onclick="filterVehicles('car',this)">
+Cars & Cabs
+</button>
+
+<button class="filter-btn" onclick="filterVehicles('premium',this)">
+Premium
+</button>
+
+</div>
+
+
+<!-- CARDS -->
+
+<div class="transport-grid">
+
+
+<!-- BUS -->
+
+<article class="transport-card" data-category="group">
+
+<div class="card-image">
+
+<img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=85"
+alt="Bus transportation">
+
+<span class="card-badge">GROUP TRAVEL</span>
+
+<span class="card-price">Book on Request</span>
+
+<div class="vehicle-icon">🚌</div>
+
+</div>
+
+<div class="card-content">
+
+<h3>Bus & Traveller</h3>
+
+<p>
+Comfortable buses for family tours, school trips,
+corporate travel and group journeys.
+</p>
+
+<div class="features">
+<span>AC / Non-AC</span>
+<span>Group Trips</span>
+<span>Outstation</span>
+</div>
+
+<button class="book-btn"
+onclick="openBooking('Bus & Traveller','🚌')">
+
+Book This Vehicle
+<span class="arrow">→</span>
+
+</button>
+
+</div>
+
+</article>
+
+
+<!-- 4 WHEELER -->
+
+<article class="transport-card" data-category="car">
+
+<div class="card-image">
+
+<img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1200&q=85"
+alt="4 wheeler car">
+
+<span class="card-badge">POPULAR</span>
+
+<span class="card-price">Book on Request</span>
+
+<div class="vehicle-icon">🚙</div>
+
+</div>
+
+<div class="card-content">
+
+<h3>4-Wheelers</h3>
+
+<p>
+Choose hatchbacks, sedans and SUVs for city rides,
+family travel and outstation journeys.
+</p>
+
+<div class="features">
+<span>Hatchback</span>
+<span>Sedan</span>
+<span>SUV</span>
+</div>
+
+<button class="book-btn"
+onclick="openBooking('4-Wheeler','🚙')">
+
+Book This Vehicle
+<span class="arrow">→</span>
+
+</button>
+
+</div>
+
+</article>
+
+
+<!-- PREMIUM -->
+
+<article class="transport-card" data-category="premium">
+
+<div class="card-image">
+
+<img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1200&q=85"
+alt="Premium luxury car">
+
+<span class="card-badge">PREMIUM</span>
+
+<span class="card-price">Book on Request</span>
+
+<div class="vehicle-icon">🚘</div>
+
+</div>
+
+<div class="card-content">
+
+<h3>Premium Cars</h3>
+
+<p>
+Premium vehicles for corporate travel, weddings,
+events and special occasions.
+</p>
+
+<div class="features">
+<span>Luxury</span>
+<span>Chauffeur</span>
+<span>Events</span>
+</div>
+
+<button class="book-btn"
+onclick="openBooking('Premium Car','🚘')">
+
+Book This Vehicle
+<span class="arrow">→</span>
+
+</button>
+
+</div>
+
+</article>
+
+
+<!-- TEMPO -->
+
+<article class="transport-card" data-category="group">
+
+<div class="card-image">
+
+<img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=85"
+alt="Tempo traveller">
+
+<span class="card-badge">FAMILY & GROUP</span>
+
+<span class="card-price">Book on Request</span>
+
+<div class="vehicle-icon">🚐</div>
+
+</div>
+
+<div class="card-content">
+
+<h3>Tempo Traveller</h3>
+
+<p>
+Spacious vehicles for family holidays, group tours
+and long-distance journeys.
+</p>
+
+<div class="features">
+<span>9–17 Seats</span>
+<span>AC</span>
+<span>Tour Trips</span>
+</div>
+
+<button class="book-btn"
+onclick="openBooking('Tempo Traveller','🚐')">
+
+Book This Vehicle
+<span class="arrow">→</span>
+
+</button>
+
+</div>
+
+</article>
+
+
+<!-- CAB -->
+
+<article class="transport-card" data-category="car">
+
+<div class="card-image">
+
+<img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=85"
+alt="Cab and taxi">
+
+<span class="card-badge">CITY & OUTSTATION</span>
+
+<span class="card-price">Book on Request</span>
+
+<div class="vehicle-icon">🚖</div>
+
+</div>
+
+<div class="card-content">
+
+<h3>Cab & Taxi</h3>
+
+<p>
+Reliable cabs for local rides, one-way journeys,
+round trips and outstation travel.
+</p>
+
+<div class="features">
+<span>One Way</span>
+<span>Round Trip</span>
+<span>Local</span>
+</div>
+
+<button class="book-btn"
+onclick="openBooking('Cab & Taxi','🚖')">
+
+Book This Vehicle
+<span class="arrow">→</span>
+
+</button>
+
+</div>
+
+</article>
+
+
+<!-- MINI BUS -->
+
+<article class="transport-card" data-category="group">
+
+<div class="card-image">
+
+<img src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1200&q=85"
+alt="Mini bus coach">
+
+<span class="card-badge">LARGE GROUPS</span>
+
+<span class="card-price">Book on Request</span>
+
+<div class="vehicle-icon">🚍</div>
+
+</div>
+
+<div class="card-content">
+
+<h3>Mini Bus / Coach</h3>
+
+<p>
+Perfect for corporate events, weddings,
+school trips, tours and larger groups.
+</p>
+
+<div class="features">
+<span>Large Groups</span>
+<span>Events</span>
+<span>Corporate</span>
+</div>
+
+<button class="book-btn"
+onclick="openBooking('Mini Bus / Coach','🚍')">
+
+Book This Vehicle
+<span class="arrow">→</span>
+
+</button>
+
+</div>
+
+</article>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     BOOKING MODAL
+========================= -->
+
+<div class="booking-modal" id="bookingModal">
+
+<div class="modal-container">
+
+<div class="modal-top">
+
+<button class="modal-close" onclick="closeBooking()">×</button>
+
+<div class="modal-top-content">
+
+<div class="modal-vehicle-icon" id="modalIcon">🚘</div>
+
+<div>
+
+<h2>Book Your Ride</h2>
+
+<p id="selectedVehicle">
+Select your preferred vehicle
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="modal-body">
+
+<form id="bookingForm">
+
+<input type="hidden" id="vehicleType">
+
+<div class="form-grid">
+
+<div class="form-field">
+
+<label>FULL NAME</label>
+
+<input
+type="text"
+name="name"
+placeholder="Enter your name"
+required>
+
+</div>
+
+
+<div class="form-field">
+
+<label>MOBILE NUMBER</label>
+
+<input
+type="tel"
+name="phone"
+placeholder="Enter mobile number"
+required>
+
+</div>
+
+
+<div class="form-field">
+
+<label>PICKUP LOCATION</label>
+
+<input
+type="text"
+name="pickup"
+placeholder="Where should we pick you?"
+required>
+
+</div>
+
+
+<div class="form-field">
+
+<label>DROP LOCATION</label>
+
+<input
+type="text"
+name="drop"
+placeholder="Where are you going?"
+required>
+
+</div>
+
+
+<div class="form-field">
+
+<label>TRAVEL DATE</label>
+
+<input
+type="date"
+name="date"
+required>
+
+</div>
+
+
+<div class="form-field">
+
+<label>PICKUP TIME</label>
+
+<input
+type="time"
+name="time"
+required>
+
+</div>
+
+
+<div class="form-field">
+
+<label>PASSENGERS</label>
+
+<select name="passengers" required>
+
+<option value="">Select passengers</option>
+<option>1–4</option>
+<option>5–8</option>
+<option>9–17</option>
+<option>18–30</option>
+<option>31+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-field">
+
+<label>TRIP TYPE</label>
+
+<select name="trip" required>
+
+<option value="">Select trip type</option>
+<option>Local</option>
+<option>One Way</option>
+<option>Round Trip</option>
+<option>Outstation</option>
+<option>Event / Function</option>
+
+</select>
+
+</div>
+
+
+<div class="form-field full">
+
+<label>ADDITIONAL REQUIREMENT</label>
+
+<textarea
+name="message"
+rows="3"
+placeholder="Tell us about your travel requirement..."></textarea>
+
+</div>
+
+</div>
+
+
+<button
+class="submit-btn"
+type="submit">
+
+Send Booking Request →
+
+</button>
+
+</form>
+
+
+<!-- SUCCESS -->
+
+<div class="success-box" id="successBox">
+
+<div class="success-check">✓</div>
+
+<h3>Booking Request Sent!</h3>
+
+<p>
+Thank you for your request. Our travel team will
+contact you shortly to confirm vehicle availability,
+pricing and booking details.
+</p>
+
+<button class="done-btn" onclick="closeBooking()">
+Done
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   FILTER
+========================= */
+
+function filterVehicles(category,button){
+
+    const cards=document.querySelectorAll(".transport-card");
+    const buttons=document.querySelectorAll(".filter-btn");
+
+    buttons.forEach(btn=>{
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    cards.forEach(card=>{
+
+        if(category==="all"){
+            card.style.display="";
+        }
+        else if(card.dataset.category===category){
+            card.style.display="";
+        }
+        else{
+            card.style.display="none";
+        }
+
+    });
+
+}
+
+
+/* =========================
+   BOOKING MODAL
+========================= */
+
+const modal=document.getElementById("bookingModal");
+
+const form=document.getElementById("bookingForm");
+
+const success=document.getElementById("successBox");
+
+
+function openBooking(vehicle,icon){
+
+    document.getElementById("selectedVehicle").textContent=
+        "Booking: "+vehicle;
+
+    document.getElementById("vehicleType").value=
+        vehicle;
+
+    document.getElementById("modalIcon").textContent=
+        icon;
+
+    form.style.display="block";
+
+    success.classList.remove("active");
+
+    modal.classList.add("active");
+
+    document.body.style.overflow="hidden";
+}
+
+
+function closeBooking(){
+
+    modal.classList.remove("active");
+
+    document.body.style.overflow="";
+
+}
+
+
+modal.addEventListener("click",function(e){
+
+    if(e.target===modal){
+
+        closeBooking();
+
+    }
+
+});
+
+
+/* =========================
+   FORM SUBMIT
+========================= */
+
+form.addEventListener("submit",function(e){
+
+    e.preventDefault();
+
+    const button=
+        form.querySelector(".submit-btn");
+
+    button.disabled=true;
+
+    button.textContent=
+        "Sending Request...";
+
+    setTimeout(()=>{
+
+        form.reset();
+
+        form.style.display="none";
+
+        success.classList.add("active");
+
+        button.disabled=false;
+
+        button.textContent=
+            "Send Booking Request →";
+
+    },900);
+
+});
+
+
+/* ESC KEY */
+
+document.addEventListener("keydown",function(e){
+
+    if(e.key==="Escape"){
+
+        closeBooking();
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
