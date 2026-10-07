@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siya Travels</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* ================= RESET ================= */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body { width: 100%; height: 100%; }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #163c3d;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        /* ================= MAIN PAGE ================= */
+        .travel-page {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background: #163c3d;
+        }
+
+        /* ================= BACKGROUND ================= */
+        .background {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .background-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transform: scale(1.08);
+            transition:
+                opacity 1.2s ease,
+                transform 7s cubic-bezier(.22,.61,.36,1);
+        }
+
+        .background-slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .background-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background:
+                linear-gradient(90deg,
+                    rgba(0,0,0,0.50) 0%,
+                    rgba(0,0,0,0.27) 42%,
+                    rgba(0,0,0,0.08) 100%),
+                linear-gradient(180deg,
+                    rgba(0,0,0,0.12),
+                    transparent 42%,
+                    rgba(0,0,0,0.20));
+        }
+
+        /* ================= NAVBAR ================= */
+        .navbar {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 82px;
+            padding: 0 28px 0 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 30;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 21px;
+            font-weight: 700;
+            user-select: none;
+        }
+
+        .logo-symbol {
+            color: #f5a623;
+            font-size: 25px;
+            transform: rotate(-12deg);
+        }
+
+        .logo-text { color: #ffffff; }
+
+        .nav-links {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 38px;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.92);
+            text-decoration: none;
+            font-size: 9px;
+            font-weight: 500;
+            transition: 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .search-button {
+            width: 23px;
+            height: 23px;
+            border: none;
+            border-radius: 50%;
+            background: #ffffff;
+            color: #777777;
+            cursor: pointer;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s ease;
+        }
+
+        .search-button:hover { transform: scale(1.12); }
+
+        .username {
+            font-size: 10px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* ================= SEARCH BOX ================= */
+        .search-box {
+            position: absolute;
+            top: 65px;
+            right: 25px;
+            width: 230px;
+            padding: 10px;
+            background: rgba(255,255,255,0.96);
+            border-radius: 6px;
+            z-index: 50;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-10px);
+            transition: 0.3s ease;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .search-box.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .search-box input {
+            width: 100%;
+            border: 0;
+            outline: 0;
+            font-size: 11px;
+            padding: 8px;
+            color: #333333;
+        }
+
+        /* ================= LEFT TIMELINE ================= */
+        .timeline {
+            position: absolute;
+            left: 31px;
+            top: 112px;
+            bottom: 85px;
+            width: 1px;
+            background: rgba(255,255,255,0.38);
+            z-index: 25;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -3px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.55);
+            cursor: pointer;
+            transition:
+                width 0.4s ease,
+                height 0.4s ease,
+                left 0.4s ease,
+                background 0.4s ease;
+        }
+
+        .timeline-dot:nth-child(1) { top: 5%; }
+        .timeline-dot:nth-child(2) { top: 25%; }
+        .timeline-dot:nth-child(3) { top: 45%; }
+        .timeline-dot:nth-child(4) { top: 65%; }
+
+        .timeline-dot.active {
+            width: 23px;
+            height: 23px;
+            left: -11px;
+            background: rgba(255,255,255,0.35);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .timeline-dot.active::after {
+            content: "";
+            position: absolute;
+            inset: 6px;
+            border-radius: 50%;
+            background: #ffffff;
+        }
+
+        /* ================= HERO ================= */
+        .hero {
+            position: absolute;
+            z-index: 12;
+            left: 7.3%;
+            top: 42%;
+            width: 490px;
+            transform: translateY(-50%);
+        }
+
+        .hero-label {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+
+        .hero-title {
+            font-size: clamp(65px, 8vw, 110px);
+            line-height: 0.88;
+            letter-spacing: -6px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 18px;
+            text-shadow: 0 8px 30px rgba(0,0,0,0.25);
+        }
+
+        .hero-description {
+            width: 420px;
+            font-size: 9px;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.88);
+            margin-bottom: 25px;
+        }
+
+        .explore-button {
+            width: 148px;
+            height: 48px;
+            border: 0;
+            border-radius: 5px;
+            background: #2878c5;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transition:
+                background 0.3s ease,
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .explore-button span {
+            font-size: 18px;
+            transition: 0.3s ease;
+        }
+
+        .explore-button:hover {
+            background: #358cdd;
+            transform: translateY(-4px);
+            box-shadow: 0 18px 35px rgba(0,0,0,0.25);
+        }
+
+        .explore-button:hover span { transform: translateX(5px); }
+
+        /* ================= CARDS ================= */
+        .cards-viewport {
+            position: absolute;
+            z-index: 14;
+            right: 0;
+            top: 0;
+            width: 51%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .cards-wrapper {
+            position: absolute;
+            left: 0;
+            top: 47%;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            --slide-x: 0px;
+            --mouse-x: 0px;
+            --mouse-y: 0px;
+
+            translate: var(--slide-x) 0;
+            transform: translate3d(var(--mouse-x), calc(-50% + var(--mouse-y)), 0);
+
+            transition:
+                translate 0.9s cubic-bezier(.22,.61,.36,1),
+                transform 0.25s ease-out;
+
+            will-change: transform, translate;
+            pointer-events: auto;
+        }
+
+        .cards-wrapper.no-anim { transition: none !important; }
+
+        .destination-card {
+            position: relative;
+            width: 190px;
+            height: 285px;
+            flex-shrink: 0;
+            border-radius: 5px;
+            overflow: visible;
+            cursor: pointer;
+        }
+
+        .destination-card:nth-child(2) { width: 190px; height: 270px; }
+        .destination-card:nth-child(3) { width: 185px; height: 250px; }
+
+        .destination-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.30);
+            transition: transform 0.6s ease, filter 0.5s ease;
+        }
+
+        .destination-card:hover .destination-image {
+            transform: translateY(-10px) scale(1.02);
+            filter: brightness(1.08);
+        }
+
+        .card-heading {
+            position: absolute;
+            left: 0;
+            top: -31px;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 600;
+            white-space: nowrap;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .card-dots {
+            position: absolute;
+            left: 0;
+            top: -15px;
+            display: flex;
+            gap: 4px;
+        }
+
+        .card-dots span {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #ffffff;
+            opacity: 0.9;
+        }
+
+        .bookmark {
+            position: absolute;
+            right: 14px;
+            top: 14px;
+            width: 36px;
+            height: 36px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.95);
+            color: #8b8b8b;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease,
+                color 0.3s ease;
+        }
+
+        .bookmark:hover {
+            transform: scale(1.1);
+            background: #ffffff;
+        }
+
+        /* ================= ANIMATIONS ================= */
+        .card-animation {
+            animation: cardMoveIn 0.9s cubic-bezier(.22,.61,.36,1) both;
+        }
+
+        @keyframes cardMoveIn {
+            0%   { opacity: 0; transform: translateX(120px) scale(0.90); }
+            55%  { opacity: 1; transform: translateX(-12px) scale(1.02); }
+            100% { opacity: 1; transform: translateX(0) scale(1); }
+        }
+
+        .text-animation {
+            animation: textEnter 0.75s cubic-bezier(.2,.8,.2,1) both;
+        }
+
+        @keyframes textEnter {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ================= BOTTOM DOTS ================= */
+        .bottom-dots {
+            position: absolute;
+            z-index: 25;
+            left: 55%;
+            bottom: 47px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .bottom-dot {
+            width: 25px;
+            height: 25px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.30);
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .bottom-dot:hover {
+            background: rgba(255,255,255,0.55);
+            transform: scale(1.08);
+        }
+
+        .bottom-dot.active {
+            background: rgba(255,255,255,0.50);
+            box-shadow: inset 0 0 0 5px rgba(255,255,255,0.08);
+        }
+
+        /* ================= COUNTER (counter-line removed) ================= */
+        .counter {
+            position: absolute;
+            right: 27px;
+            bottom: 40px;
+            z-index: 25;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 9px;
+        }
+
+        .counter-current { font-weight: 600; }
+
+        /* .counter-line REMOVED as requested */
+
+        .counter-total { opacity: 0.7; }
+
+        /* ================= TABLET ================= */
+        @media (max-width: 1100px) {
+            .nav-links { gap: 22px; }
+
+            .hero { left: 7%; width: 430px; }
+
+            .hero-title { font-size: 75px; }
+
+            .cards-viewport { width: 54%; }
+
+            .cards-wrapper {
+                transform: translate3d(var(--mouse-x), calc(-50% + var(--mouse-y)), 0) scale(0.88);
+                transform-origin: left center;
+            }
+        }
+
+        /* ================= MOBILE ================= */
+        @media (max-width: 700px) {
+            .navbar { height: 70px; padding: 0 18px; }
+
+            .logo { font-size: 19px; }
+
+            .nav-links,
+            .username { display: none; }
+
+            .timeline { left: 18px; }
+
+            .hero { left: 10%; top: 39%; width: 78%; }
+
+            .hero-title { font-size: 58px; letter-spacing: -4px; }
+
+            .hero-description { width: 100%; font-size: 9px; }
+
+            .cards-viewport { width: 100%; height: 50%; top: 50%; }
+
+            .cards-wrapper {
+                left: 24%;
+                top: 62%;
+                transform: translate3d(var(--mouse-x), calc(-50% + var(--mouse-y)), 0) scale(0.65);
+                transform-origin: left center;
+            }
+
+            .destination-card:nth-child(n+2) { display: none; }
+
+            .bottom-dots {
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: 25px;
+            }
+
+            .counter { display: none; }
+        }
+
+        /* ================= SMALL MOBILE ================= */
+        @media (max-width: 450px) {
+            .hero { top: 36%; }
+
+            .hero-title { font-size: 47px; letter-spacing: -3px; }
+
+            .hero-description { font-size: 8px; line-height: 1.5; }
+
+            .explore-button { width: 135px; height: 45px; font-size: 14px; }
+
+            .cards-wrapper { left: 18%; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="travel-page">
+
+        <!-- BACKGROUND SLIDER -->
+        <div class="background">
+            <!-- Slide 0: Kerala -->
+            <div class="background-slide active"
+                 style="background-image: url('https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=2200&q=90');">
+            </div>
+
+            <!-- Slide 1: Goa -->
+            <div class="background-slide"
+                 style="background-image: url('https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=2200&q=90');">
+            </div>
+
+            <!-- Slide 2: Dudhsagar Waterfall — FIXED: use a single .background-slide with background-image -->
+            <div class="background-slide"
+                 style="background-image: url('images/dudhsagar-waterfall.png');">
+            </div>
+
+            <!-- Slide 3: Phuket -->
+            <div class="background-slide"
+                 style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2200&q=90');">
+            </div>
+        </div>
+
+        <div class="background-overlay"></div>
+
+        <!-- NAVBAR -->
+        <header class="navbar">
+            <div class="logo">
+                <div class="logo-symbol"></div>
+                <div class="logo-text">Siya Travels</div>
+            </div>
+        </header>
+
+        <!-- SEARCH (hidden by default, kept intact) -->
+        <div class="search-box" id="searchBox">
+            <input id="searchInput" type="text" placeholder="Search destination..." autocomplete="off">
+        </div>
+
+        <!-- LEFT TIMELINE -->
+        <div class="timeline">
+            <div class="timeline-dot active" data-slide="0"></div>
+            <div class="timeline-dot" data-slide="1"></div>
+            <div class="timeline-dot" data-slide="2"></div>
+            <div class="timeline-dot" data-slide="3"></div>
+        </div>
+
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-label" id="heroLabel">India</div>
+
+            <h1 class="hero-title" id="heroTitle">KERALA</h1>
+
+            <p class="hero-description" id="heroDescription">
+                Kerala, a state on India's tropical Malabar Coast,
+                has nearly 600km of Arabian Sea shoreline.
+                It's known for palm-lined beaches and backwaters,
+                a network of canals.
+            </p>
+
+            <button class="explore-button" id="exploreButton">
+                <span class="explore-text">Explore</span>
+                <span>→</span>
+            </button>
+        </section>
+
+        <!-- CARDS (rendered by JavaScript) -->
+        <div class="cards-viewport">
+            <div class="cards-wrapper" id="cardsWrapper"></div>
+        </div>
+
+        <!-- COUNTER (counter-line removed) -->
+        <div class="counter">
+            <span class="counter-current" id="counterCurrent"></span>
+            <span class="counter-total"></span>
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* ================= DESTINATION DATA ================= */
+
+        const img = id =>
+            `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=900&q=90`;
+
+        const destinations = [
+            {
+                country: "India",
+                title: "KERALA",
+                label: "Kerala, India",
+                image: img("1593693397690-362cb9666fc2"),
+                description: "Kerala, a state on India's tropical Malabar Coast, has nearly 600km of Arabian Sea shoreline. It's known for palm-lined beaches and backwaters, a network of canals."
+            },
+            {
+                country: "India",
+                title: "Goa",
+                label: "Goa",
+                image: img("1512343879784-a960bf40e7f2"),
+                description: "Goa is a vibrant coastal destination famous for golden beaches, Portuguese heritage, lively nightlife and breathtaking sunsets."
+            },
+            {
+                country: "India",
+                title: "dudhsagar waterfall",
+                label: "dudhsagar waterfall",
+                image: "images/dudhsagar-waterfall.png",   // FIXED: .jpg (was .png)
+                description: "Dudhsagar Waterfall is a spectacular natural wonder famous for its majestic cascading waters, lush green forests, scenic landscapes and breathtaking beauty."
+            },
+            {
+                country: "India",
+                title: "varkala beach",
+                label: "varkala beach",
+                image: img("1507525428034-b723cf961d3e"),
+                description: "Varkala Beach is known for its golden sands, sparkling waters, dramatic coastal cliffs, stunning sunsets and serene natural beauty."
+            }
+        ];
+
+
+        /* ================= DOM ELEMENTS ================= */
+
+        const backgrounds     = document.querySelectorAll(".background-slide");
+        const timelineDots    = document.querySelectorAll(".timeline-dot");
+        const bottomDots      = document.querySelectorAll(".bottom-dot"); // empty NodeList – fine
+        const heroLabel       = document.getElementById("heroLabel");
+        const heroTitle       = document.getElementById("heroTitle");
+        const heroDescription = document.getElementById("heroDescription");
+        const counter         = document.getElementById("counterCurrent");
+        const searchButton    = document.getElementById("searchButton");   // null – never used
+        const searchBox       = document.getElementById("searchBox");
+        const searchInput     = document.getElementById("searchInput");
+        const cardsWrapper    = document.getElementById("cardsWrapper");
+        const page            = document.querySelector(".travel-page");
+        const exploreButton   = document.getElementById("exploreButton");
+
+
+        /* ================= STATE ================= */
+
+        let currentSlide = 0;
+        const slideDuration = 7000;
+        let slideAnimating = false;
+        const savedCards = new Set();
+
+
+        /* ================= RENDER CARDS =================
+           Always shows the NEXT three destinations. */
+        function renderCards(index) {
+            const total = destinations.length;
+
+            cardsWrapper.innerHTML = [1, 2, 3].map((offset, i) => {
+                const idx = (index + offset) % total;
+                const d = destinations[idx];
+                const saved = savedCards.has(idx);
+
+                return `
+                <article class="destination-card card-animation"
+                         data-index="${idx}"
+                         style="animation-delay:${i * 140}ms">
+                    <div class="card-heading">${d.label}</div>
+                    <div class="card-dots">
+                        <span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                    <img class="destination-image" src="${d.image}" alt="${d.label}">
+                    <button class="bookmark" aria-label="Bookmark ${d.label}"
+                            style="color:${saved ? "#2878c5" : "#8b8b8b"}">
+                        ${saved ? "✓" : "🔖"}
+                    </button>
+                </article>`;
+            }).join("");
+        }
+
+
+        /* ================= CARD CLICKS ================= */
+
+        cardsWrapper.addEventListener("click", event => {
+            event.stopPropagation();
+
+            const card = event.target.closest(".destination-card");
+            if (!card) return;
+
+            const idx = Number(card.dataset.index);
+            const bookmark = event.target.closest(".bookmark");
+
+            if (bookmark) {
+                const saved = savedCards.has(idx);
+
+                if (saved) {
+                    savedCards.delete(idx);
+                } else {
+                    savedCards.add(idx);
+                }
+
+                bookmark.textContent = saved ? "🔖" : "✓";
+                bookmark.style.color = saved ? "#8b8b8b" : "#2878c5";
+                return;
+            }
+
+            if (!slideAnimating) changeSlide(idx);
+        });
+
+
+        /* ================= CHANGE SLIDE ================= */
+
+        function changeSlide(index) {
+
+            if (index < 0 || index >= destinations.length) return;
+
+            if (index === currentSlide && !slideAnimating) {
+                updateContent(index);
+                return;
+            }
+
+            slideAnimating = true;
+            currentSlide = index;
+
+            const destination = destinations[index];
+
+            /* background */
+            backgrounds.forEach((background, i) => {
+                background.classList.toggle("active", i === index);
+            });
+
+            /* hero text reset */
+            heroLabel.classList.remove("text-animation");
+            heroTitle.classList.remove("text-animation");
+            heroDescription.classList.remove("text-animation");
+
+            void heroTitle.offsetWidth;
+
+            /* hero text update */
+            heroLabel.textContent = destination.country;
+            heroTitle.textContent = destination.title;
+            heroDescription.textContent = destination.description;
+
+            heroLabel.classList.add("text-animation");
+            heroTitle.classList.add("text-animation");
+            heroDescription.classList.add("text-animation");
+
+            /* timeline + dots + counter */
+            timelineDots.forEach((dot, i) => dot.classList.toggle("active", i === index));
+            bottomDots.forEach((dot, i) => dot.classList.toggle("active", i === index));
+            counter.textContent = String(index + 1).padStart(2, "0");
+
+            /* card movement */
+            renderCards(index);
+
+            cardsWrapper.classList.add("no-anim");
+            cardsWrapper.style.setProperty("--slide-x", "90px");
+            void cardsWrapper.offsetWidth;
+            cardsWrapper.classList.remove("no-anim");
+            cardsWrapper.style.setProperty("--slide-x", "0px");
+
+            /* release slide lock */
+            setTimeout(() => {
+                slideAnimating = false;
+            }, 1000);
+        }
+
+
+        /* ================= UPDATE CONTENT (no animation) ================= */
+
+        function updateContent(index) {
+            const destination = destinations[index];
+
+            heroLabel.textContent = destination.country;
+            heroTitle.textContent = destination.title;
+            heroDescription.textContent = destination.description;
+
+            backgrounds.forEach((background, i) => {
+                background.classList.toggle("active", i === index);
+            });
+
+            timelineDots.forEach((dot, i) => dot.classList.toggle("active", i === index));
+            bottomDots.forEach((dot, i) => dot.classList.toggle("active", i === index));
+
+            counter.textContent = String(index + 1).padStart(2, "0");
+        }
+
+
+        /* ================= NEXT / PREVIOUS ================= */
+
+        function nextSlide() {
+            if (slideAnimating) return;
+
+            let next = currentSlide + 1;
+            if (next >= destinations.length) next = 0;
+
+            changeSlide(next);
+        }
+
+        function previousSlide() {
+            if (slideAnimating) return;
+
+            let previous = currentSlide - 1;
+            if (previous < 0) previous = destinations.length - 1;
+
+            changeSlide(previous);
+        }
+
+
+        /* ================= AUTOMATIC SLIDER ================= */
+
+        setInterval(nextSlide, slideDuration);
+
+
+        /* ================= DOT NAVIGATION ================= */
+
+        [...bottomDots, ...timelineDots].forEach(dot => {
+            dot.addEventListener("click", () => {
+                const index = Number(dot.dataset.slide);
+
+                if (index !== currentSlide) changeSlide(index);
+            });
+        });
+
+
+        /* ================= SEARCH ================= */
+        if (searchButton) {
+            searchButton.addEventListener("click", event => {
+                event.stopPropagation();
+                searchBox.classList.toggle("active");
+                if (searchBox.classList.contains("active")) {
+                    searchInput.focus();
+                }
+            });
+        }
+
+        searchBox.addEventListener("click", event => event.stopPropagation());
+
+        document.addEventListener("click", () => {
+            searchBox.classList.remove("active");
+        });
+
+        searchInput.addEventListener("keydown", event => {
+            if (event.key !== "Enter") return;
+
+            const value = searchInput.value.toLowerCase().trim();
+            if (!value) return;
+
+            const index = destinations.findIndex(destination =>
+                destination.title.toLowerCase().includes(value) ||
+                destination.country.toLowerCase().includes(value)
+            );
+
+            if (index !== -1) {
+                changeSlide(index);
+                searchBox.classList.remove("active");
+                searchInput.value = "";
+            }
+        });
+
+
+        /* ================= MOUSE PARALLAX ================= */
+
+        page.addEventListener("mousemove", event => {
+            const x = event.clientX / window.innerWidth - 0.5;
+            const y = event.clientY / window.innerHeight - 0.5;
+
+            cardsWrapper.style.setProperty("--mouse-x", `${x * 18}px`);
+            cardsWrapper.style.setProperty("--mouse-y", `${y * 12}px`);
+        });
+
+        page.addEventListener("mouseleave", () => {
+            cardsWrapper.style.setProperty("--mouse-x", "0px");
+            cardsWrapper.style.setProperty("--mouse-y", "0px");
+        });
+
+
+        /* ================= TOUCH SWIPE ================= */
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        page.addEventListener("touchstart", event => {
+            touchStartX = event.changedTouches[0].screenX;
+        }, { passive: true });
+
+        page.addEventListener("touchend", event => {
+            touchEndX = event.changedTouches[0].screenX;
+
+            const difference = touchStartX - touchEndX;
+
+            if (Math.abs(difference) < 50) return;
+
+            if (difference > 0) {
+                nextSlide();
+            } else {
+                previousSlide();
+            }
+        }, { passive: true });
+
+
+        /* ================= KEYBOARD ================= */
+
+        document.addEventListener("keydown", event => {
+            if (event.key === "ArrowRight") nextSlide();
+            if (event.key === "ArrowLeft") previousSlide();
+        });
+
+
+        /* ================= EXPLORE BUTTON ================= */
+
+        exploreButton.addEventListener("click", () => {
+            alert("Explore " + destinations[currentSlide].title);
+        });
+
+
+        /* ================= INITIALIZE ================= */
+        updateContent(0);
+        renderCards(0);
+
+        window.addEventListener('load', () => {
+            const cards = document.querySelectorAll('.destination-card');
+            cards.forEach(card => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateX(0) scale(1)';
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>
